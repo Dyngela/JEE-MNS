@@ -18,7 +18,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     */
     private static final Duration REQUEST_TIMEOUT = Duration.ofSeconds(3);
 
-    private final WebClient userAPI = WebClient.create("http://localhost:8084/users");
+    private final WebClient userAPI = WebClient.create("http://localhost:8084/api/users");
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

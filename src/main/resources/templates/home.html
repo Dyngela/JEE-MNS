@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" />
 </head>
 <body>
-    <h1>Welcome !</h1>
-    <p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
-    <div sec:authorize="hasRole('ROLE_ADMIN')">
-        <p>Click <a th:href="@{/admin}">View Admin page</a></p>
+    <div id="home">
+        <h1>Welcome !</h1>
+        <p>Click <a th:href="@{/hello}">here</a> to see a greeting</p>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <p>Click <a th:href="@{/admin}">View Admin page</a></p>
+        </div>
     </div>
 </body>
 </html>

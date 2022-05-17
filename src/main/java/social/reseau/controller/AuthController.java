@@ -39,9 +39,10 @@ public class AuthController {
         user.setUsername(register.getUsername());
         user.setPassword(passwordEncoder.encode(register.getPassword()));
         user.getRoles().add(Role.USER);
-        userService.save(user);
+        userService.create(user);
         Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(register.getUsername(),
+                .authenticate(new UsernamePasswordAuthenticationToken(
+                        register.getUsername(),
                         register.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return ResponseEntity.created(null).build();
@@ -49,6 +50,7 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequestDTO login) {
+        System.out.println(login.getUsername());
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);

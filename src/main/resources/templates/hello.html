@@ -6,7 +6,7 @@
     <title>Hello</title>
 </head>
 <body>
-    <h1>Hello [[${user.username}]]!</h1>
+    <h1 th:text="#{label.welcome} + ' ' + ${user.username}"></h1>
     <p>[[${user.firstName + " " + user.lastName}]]</p>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Sign Out"/>
