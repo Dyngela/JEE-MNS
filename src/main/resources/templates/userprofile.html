@@ -6,6 +6,38 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 </head>
 <body>
+<h1>My profile</h1>
+<form th:action="@{/users/save}" th:object="${userForm}" method="POST">
+    ID:
+    <input type="text" th:field="*{id}" readonly />
+    <br />
+    First Name: <input type="text" th:field="*{firstName}" />
+    <br />
+    Last Name: <input type="text" th:field="*{lastName}" />
+    <br />
+    Birth Date:
+    Day: <input type="text" th:field="*{birthDateDay}" />
+    Month: <input type="text" th:field="*{birthDateMonth}" />
+    Year: <input type="text" th:field="*{birthDateYear}" />
+    <br />
+    Gender: <input type="text" th:field="*{gender}" />
+    <br />
+    Phone Number: <input type="text" th:field="*{phoneNumber}" />
+    <br />
+    Email: <input type="text" th:field="*{email}" />
+    <br />
+    Username: <input type="text" th:field="*{username}" />
+    <br />
+    Password: <input type="password" th:field="*{password}" />
+    <br />
+    <input type="submit" value="Update" />
+</form>
 
+<br />
+
+<!-- Check if error message is not null and not empty -->
+<div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red; font-style:italic">
+    ...
+</div>
 </body>
 </html>
