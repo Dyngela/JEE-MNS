@@ -53,6 +53,7 @@
                                        placeholder="What are you thinking?"
                                        type="text"
                                 />
+                                <input type="hidden" name="idUser" th:value="${iduser.longValue()}"/>
 <!--                                <input type="hidden" name="idUser" th:value="${post.idMessage}"/>-->
                             </div>
                             <div class="btn-toolbar justify-content-end">
@@ -70,19 +71,21 @@
                         <div class="d-flex flex-row user-info">
                             <img class="rounded-circle border" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Breezeicons-actions-22-im-user.svg/1200px-Breezeicons-actions-22-im-user.svg.png" width="40">
                             <div class="d-flex flex-column justify-content-start ml-2">
-                                <span class="d-block font-weight-bold name"  th:utext="${post.user.surname}">Marry Andrews</span>
-                                <span class="date text-black-50"  th:utext="${post.date}">Jan 2020</span>
+                                <span class="d-block font-weight-bold name"  th:utext="${post.user.surname}"></span>
+                                <span class="date text-black-50"  th:utext="${post.date}"></span>
                             </div>
                         </div>
                         <div class="mt-2">
-                            <p class="comment-text" th:utext="${post.content}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p class="comment-text" th:utext="${post.content}"></p>
                         </div>
                     </div>
                     <div class="bg-white">
-                        <div class="d-flex flex-row fs-12">
-                            <button class="btn btn-link mb-2"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span></button>
+                        <div class="d-flex flex-row justify-content-end fs-12">
+                            <form th:action="@{/forum/deletePost}" th:object="${deletePost}"  th:if="${post.user.idUser == iduser}" method="POST">
+                                <input type="hidden" name="idMessage" th:value="${post.idMessage}"/>
+                                <button class="btn btn-link text-danger mb-2" type="submit"><i class="fa fa-trash"></i><span class="ml-1"
+                                >Delete</span></button>
+                            </form>
                         </div>
                     </div>
                     <div class="bg-light p-2 m-2">
@@ -95,9 +98,8 @@
                                    th:field="*{content}"
                                    type="text"
                             />
-                            <input type="hidden" th:value="*{idUser}" style="display:none;"/>
+                            <input type="hidden" name="idUser" th:value="${iduser.longValue()}"/>
                             <input type="hidden" name="idMessage" th:value="${post.idMessage}"/>
-
                         </div>
                         <div class="mt-2 text-right">
                             <button class="btn btn-primary btn-sm shadow-none" type="submit">Post comment</button>
