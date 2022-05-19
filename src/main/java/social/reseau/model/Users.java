@@ -1,5 +1,6 @@
 package social.reseau.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class Users implements Serializable {
 
     private Long idUser;

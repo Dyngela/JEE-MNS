@@ -9,18 +9,11 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Post implements Serializable {
-
+public class Post {
     private Long idMessage;
-
-    private String content;
-
-    private Timestamp date;
-
-    private List<Comment> comments;
-
-    private Users user;
-
+    private Long idComment;
     private Long idUser;
 
+    private String content;
+    private Timestamp date;
 }

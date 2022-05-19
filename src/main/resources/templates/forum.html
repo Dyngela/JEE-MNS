@@ -57,7 +57,7 @@
                             </div>
                             <div class="btn-toolbar justify-content-end">
                                 <div class="btn-group">
-                                    <input type="submit" value="Create"  class="btn btn-primary"/>
+                                    <input type="submit" value="Post"  class="btn btn-primary"/>
                                 </div>
                             </div>
                         </form>
@@ -68,7 +68,7 @@
                 <div class="d-flex flex-column comment-section">
                     <div class="bg-white p-2">
                         <div class="d-flex flex-row user-info">
-                            <img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+                            <img class="rounded-circle border" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Breezeicons-actions-22-im-user.svg/1200px-Breezeicons-actions-22-im-user.svg.png" width="40">
                             <div class="d-flex flex-column justify-content-start ml-2">
                                 <span class="d-block font-weight-bold name"  th:utext="${post.user.surname}">Marry Andrews</span>
                                 <span class="date text-black-50"  th:utext="${post.date}">Jan 2020</span>
@@ -85,11 +85,11 @@
                             <button class="btn btn-link mb-2"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span></button>
                         </div>
                     </div>
-                    <div class="bg-light p-2">
+                    <div class="bg-light p-2 m-2">
                         <form th:action="@{/forum/addComment}" th:object="${newComment}" method="POST">
                         <div class="d-flex flex-row align-items-start">
-                            <img class="rounded-circle"
-                                 src="https://i.imgur.com/RpzrMR2.jpg"
+                            <img class="rounded-circle border"
+                                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Breezeicons-actions-22-im-user.svg/1200px-Breezeicons-actions-22-im-user.svg.png"
                                  width="40" alt="">
                             <input class="form-control ml-1 shadow-none"
                                    th:field="*{content}"
@@ -106,7 +106,7 @@
                     </div>
                     <div class="bg-light p-2 m-3" th:each ="comment : ${post.comments}">
                         <div class="d-flex flex-row align-items-start">
-                            <img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40" alt="">
+                            <img class="rounded-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Breezeicons-actions-22-im-user.svg/1200px-Breezeicons-actions-22-im-user.svg.png" width="40" alt="">
                             <container  th:utext="${comment.content}" class="ml-2">comment</container>
                         </div>
                     </div>
