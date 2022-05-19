@@ -7,11 +7,9 @@
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.1/css/bootstrap.min.css} "/>
 </head>
 <body>
-    <div th:insert="navbar :: navbar">  </div>
-    <h1 th:text="#{label.welcome} + ' ' + ${user.username}"></h1>
-    <p>[[${user.firstName + " " + user.lastName}]]</p>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out"/>
-    </form>
+    <div th:insert="navbar :: navbar"></div>
+
+    <h1 th:text="#{label.welcome} + ' ' + ${user.firstName} + ' !'" class="mt-3 text-center"></h1>
+    <!--<p>[[${user.firstName + " " + user.lastName}]]</p>-->
 </body>
 </html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Form</title>
+</head>
+<body>
+    <div th:fragment="userform" class="m-3">
+        <form th:action="@{/users/save}" th:object="${userFormData}" method="POST">
+            <div th:if="${#fields.hasAnyErrors()}" class="text-danger">
+                <h4>Please correct the following error(s):</h4>
+                <ul>
+                    <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+                </ul>
+            </div>
+            <div class="form-group row">
+                <label for="userId" class="col-sm-2 col-form-label">ID</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{id}" id="userId" class="form-control-plaintext" readonly />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="firstName" class="col-sm-2 col-form-label" th:text="#{label.firstname}">First Name</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{firstName}" id="firstName" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lastName" class="col-sm-2 col-form-label" th:text="#{label.lastname}">Last Name</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{lastName}" id="lastName" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" th:text="#{label.birthdate}">Birth Date</label>
+                <div class="col-sm-10 d-flex justify-content-between">
+                    <div><span th:text="#{label.birthdate.day}">Day: </span><input type="text" th:field="*{birthDateDay}" /></div>
+                    <div><span th:text="#{label.birthdate.month}">Month: </span><input type="text" th:field="*{birthDateMonth}" /></div>
+                    <div><span th:text="#{label.birthdate.year}">Year: </span><input type="text" th:field="*{birthDateYear}" /></div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="gender" class="col-sm-2 col-form-label" th:text="#{label.gender}">Gender</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{gender}" id="gender">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="phoneNumber" class="col-sm-2 col-form-label" th:text="#{label.phonenumber}">Phone Number</label>
+                <div class="col-sm-10">
+                    <input type="number" th:field="*{phoneNumber}" id="phoneNumber" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label" th:text="#{label.email}">Email</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{email}" id="email" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="username" class="col-sm-2 col-form-label" th:text="#{label.username}">Username</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{username}" id="username" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-sm-2 col-form-label" th:text="#{label.password}">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" th:field="*{password}" id="password" />
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary" th:text="#{label.save}">Save</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -41,26 +41,24 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public String registerUser(@Valid @ModelAttribute("userData") RegisterRequestDTO register, final Model model) {
-        try {
-            User user = new User();
-            user.setFirstName(register.getFirstName());
-            user.setLastName(register.getLastName());
-            user.setEmail(register.getEmail());
-            user.setUsername(register.getUsername());
-            user.setPassword(passwordEncoder.encode(register.getPassword()));
-            user.setGender(Gender.OTHER);
-            user.getRoles().add(Role.USER);
-            userService.create(user);
-            Authentication authentication = authenticationManager
-                    .authenticate(new UsernamePasswordAuthenticationToken(
-                            register.getUsername(),
-                            register.getPassword()));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-        } catch (Exception e) {
-            //model.addAttribute("registrationForm", register);
-            return "/auth/signup";
+    public String registerUser(@Valid @ModelAttribute("userData") RegisterRequestDTO register, BindingResult result, final Model model) {
+        if (result.hasErrors()) {
+            return "signup";
         }
+        User user = new User();
+        user.setFirstName(register.getFirstName());
+        user.setLastName(register.getLastName());
+        user.setEmail(register.getEmail());
+        user.setUsername(register.getUsername());
+        user.setPassword(passwordEncoder.encode(register.getPassword()));
+        user.setGender(Gender.OTHER);
+        user.getRoles().add(Role.USER);
+        userService.create(user);
+        Authentication authentication = authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(
+                        register.getUsername(),
+                        register.getPassword()));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         return "redirect:/hello";
     }
 

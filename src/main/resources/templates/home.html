@@ -5,13 +5,40 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" />
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.1/css/bootstrap.min.css} "/>
 </head>
 <body>
-    <div id="home">
-        <h1>Welcome !</h1>
-        <p>Click <a th:href="@{/hello}">here</a> to see a greeting</p>
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <p>Click <a th:href="@{/admin}">View Admin page</a></p>
+    <div id="home" class="row">
+        <div class="col-sm-6"></div>
+        <div class="col-sm-6 content">
+            <div class="d-flex justify-content-end">
+                <a th:href="@{?lang=fr}">
+                    <button class="btn btn-sm btn-outline-dark" type="button">FR</button>
+                </a>
+                <a th:href="@{?lang=en}">
+                    <button class="btn btn-sm btn-outline-dark" type="button">EN</button>
+                </a>
+            </div>
+            <h1 th:text="#{label.welcome}">Welcome !</h1>
+            <br />
+            <p th:text="#{label.content}">...</p>
+            <br />
+            <br />
+            <h3 th:text="#{label.registered}">Already a registrered user?</h3>
+            <div class="text-center">
+                <a th:href="@{/login}">
+                    <button class="btn btn-primary" th:text="#{label.signin}">Go to log in page</button>
+                </a>
+            </div>
+            <br />
+            <hr />
+            <br />
+            <h3 th:text="#{label.notregistered}">...or create your account now:</h3>
+            <div class="text-center">
+                <a th:href="@{/auth/signup}">
+                    <button class="btn btn-success" th:text="#{label.signup}">Register</button>
+                </a>
+            </div>
         </div>
     </div>
 </body>

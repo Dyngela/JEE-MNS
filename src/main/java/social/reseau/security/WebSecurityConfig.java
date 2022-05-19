@@ -27,18 +27,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
+                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/", "/index", "/home").permitAll()
-                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().permitAll()
-                .and().logout().permitAll();
+                .and().formLogin().defaultSuccessUrl("/hello", true).permitAll()
+                .and().logout().logoutSuccessUrl("/").permitAll();
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/vendor/**","/fonts/**");
+        web
+                .ignoring()
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/img/**");
     }
 
     @Bean

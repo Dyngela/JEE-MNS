@@ -10,14 +10,28 @@
     <nav th:fragment="navbar" class="navbar navbar-expand-md bg-dark navbar-dark">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{/}">ERASMUS</a>
+                <a class="navbar-brand" th:href="@{/hello}">ERASMUS</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a class="nav-link" th:href="@{/users/me}">Profile</a></li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')">
-                    <a class="nav-link" th:href="@{/users/all}">Users</a>
+                    <a class="nav-link" th:href="@{/users/all}" th:text="#{label.users.management}"></a>
                 </li>
-                <li><a class="nav-link" th:href="@{/logout}">Sign out</a></li>
+                <li>
+                    <a class="nav-link" th:href="@{/users/me}" th:text="#{label.profile}">My Profile</a>
+                </li>
+                <li>
+                    <a class="nav-link" th:href="@{/logout}" th:text="#{label.logout}">Sign Out</a>
+                </li>
+                <li>
+                    <a class="nav-link" th:href="@{?lang=fr}">
+                        <button class="btn btn-sm btn-outline-light" type="button">FR</button>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" th:href="@{?lang=en}">
+                        <button class="btn btn-sm btn-outline-light" type="button">EN</button>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
